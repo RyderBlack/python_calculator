@@ -33,7 +33,7 @@ def calc():
     while True:
         try:
             
-            user_choice = input("Enter something (or 'q' to quit): ").replace(" ", "")
+            user_choice = input("Enter your calculation (or 'q' to quit): ").replace(" ", "")
              
             
             # let the user exit the program
@@ -41,7 +41,13 @@ def calc():
                 print("Exiting the calculator. Thank you!")
                 break
             
+            parts = re.findall(r"[-+]?(?:\d*\.*\d+)", user_choice)
+            
+             
             parts = re.split('([+-/*])', user_choice)
+            
+            
+            print(parts)
 
             if len(parts) != 3:
                 print("Invalid format. Please use: number operator number")
@@ -49,9 +55,13 @@ def calc():
             
             num1 = int(parts[0])
             operator = parts[1]
-            num2 = int(parts[2]) 
-
+            num2 = int(parts[2])
+    
+                
+            
+            
             if operator == "+":
+                # print("type of ", num1, num2)
                 addit(num1, operator, num2)
             elif operator == "-":
                 substractor(num1, operator, num2)
@@ -69,7 +79,7 @@ def calc():
             print(f"An unexpected error occurred: {e}")
             
         # to ask again for a new calc
-        print("\nEnter another calculation or 'q' to quit")
+        # print("\nEnter another calculation or 'q' to quit")
                 
 
 if __name__ == "__main__":
