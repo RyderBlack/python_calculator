@@ -7,4 +7,4 @@ while True:
         d = int(input("Choisir la seconde valeur : "))
         d = d + c 
         print( d )
-        c = c + d
+        c = d
