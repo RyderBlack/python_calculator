@@ -34,20 +34,20 @@ def calc():
         try:
             
             user_choice = input("Enter your calculation (or 'q' to quit): ").replace(" ", "")
-             
+            
             
             # let the user exit the program
             if user_choice.lower() == "q":
                 print("Exiting the calculator. Thank you!")
                 break
             
-            parts = re.findall(r"[-+]?(?:\d*\.*\d+)", user_choice)
+            # parts = re.findall(r"[-+]?(?:\d*\.*\d+)", user_choice)
             
              
             parts = re.split('([+-/*])', user_choice)
             
             
-            print(parts)
+            # print(parts)
 
             if len(parts) != 3:
                 print("Invalid format. Please use: number operator number")
