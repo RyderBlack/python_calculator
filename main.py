@@ -39,6 +39,12 @@ def calculator():
 
 
         elif choice == "6":
+            print("select an operation :")
+            print("addition = 1")
+            print("subtraction = 2")
+            print("multiply = 3")
+            print("divide = 4")
+            print("exponentiation = 5")
             choice2 = input("what order you want to do: ")
             if choice2 in ["1", "2", "3", "4", "5"]:
                 if choice2 == "1":
@@ -60,22 +66,33 @@ def calculator():
 
                 while True: 
                         num3 = float(input("enter an other number : "))
+                        print("select an operation :")
+                        print("addition = 1")
+                        print("subtraction = 2")
+                        print("multiply = 3")
+                        print("divide = 4")
+                        print("exponentiation = 5")
                         choice3 = input("what order you want to do: ")
                         if choice3 in ["1", "2", "3", "4", "5"]:
-                            if choice2 == "1":
-                                print(f"result: {num4} + {num3} = {add(num4, num3)}")
+                            if choice3 == "1":
+                                num3 = num3 + num4
+                                print( num3)
                                 num4 = num3
                             elif choice3 == "2":
-                                print(f"result: {num4} - {num3} = {subs(num4, num3)}")
+                                num3 = num3 - num4
+                                print(num3)
                                 num4 = num3
                             elif choice3 == "3":
-                                print(f"result: {num4} * {num3} = {mult(num4, num3)}")
+                                num3 = num3 * num4
+                                print(num3)
                                 num4 = num3
                             elif choice3 == "4":
-                                print(f"result: {num4} / {num3} = {div(num4, num3)}")
+                                num3 = num3 / num4
+                                print(num3)
                                 num4 = num3
                             elif choice3 == "5":
-                                print(f"result: {num4} ** {num3} = {exp(num4,num3)}")
+                                num3 = num3 ** num4
+                                print(num3)
                                 num4 = num3
 
     else:
