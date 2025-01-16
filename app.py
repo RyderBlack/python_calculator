@@ -21,7 +21,7 @@ bold_end   = '\033[0m'
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
-    
+       
     # if os.name == 'nt':
     #     os.system('cls')
     # else:
@@ -62,6 +62,18 @@ def dividor(x,y):
 def exponentor(x,y):
     return x ** y
 
+def get_number(user_input_number):
+    while True:
+        try:
+            num = input(user_input_number)
+            if '.' in num:
+                return float(num)
+            else:
+                return int(num)
+        except ValueError:
+            console.print("[bold red]Error: Please enter a valid number[/bold red]")
+
+
 # the main code - the calculator
 def calculator():
     
@@ -70,25 +82,17 @@ def calculator():
             
             calc_choice()
             
-            choice = input("\nWhat operation de you want to do: ")
+            choice = input("\nWhat operation do you want to do: ")
             if choice in ["1", "2", "3", "4", "5"]:
                 
-                num1 = input("enter the first number : ")
-                if "." in num1:
-                    num1 = float(num1)
-                else:
-                    num1 = int(num1)
-                    
-                num2 = input("enter the second number: ")
-                if "." in num2:
-                    num2 = float(num2)
-                else:
-                    num2 = int(num2)
+                num1 = get_number("enter the first number : ")
+                num2 = get_number("enter the second number: ")         
 
-                # match case to determine the operation to do
+                
                 clear_screen()
                 calc_choice()
                 
+                # match case to determine the operation to do
                 match choice:
                     case "1":
                         print(f"\nresult: {num1} + {num2} = {bold_start}{additor(num1, num2)}{bold_end}")
@@ -111,6 +115,9 @@ def calculator():
                 input("\nPress Enter to continue...")
                 clear_screen()
                 
+        
+        # except Exception as e:
+        #     print(f"An unexpected error occurred: {e}")        
         except KeyboardInterrupt:
             clear_screen()
             print("Thank you!")
