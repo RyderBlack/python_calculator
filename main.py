@@ -76,7 +76,7 @@ def calculator():
                         if choice3 in ["1", "2", "3", "4", "5"]:
                             if choice3 == "1":
                                 num3 = num3 + num4
-                                print( num3)
+                                print(num3)
                                 num4 = num3
                             elif choice3 == "2":
                                 num3 = num3 - num4
