@@ -21,20 +21,28 @@ def exp(x,y):
 def calculator():
  while True:
     print("")
-    num1 = float(input("enter the frist number : "))
-    num2 = float(input("enter the second number: "))
-    choice = input("what order you want to do: ")
+    choice = input("what order you want to do : ")
     print("")
     if choice in ["1", "2", "3", "4", "5", "6"]:
         if choice == "1":
+            num1 = float(input("enter the frist number : "))
+            num2 = float(input("enter the second number : "))
             print(f"result: {num1} + {num2} = {add(num1, num2)}")
         elif choice == "2":
+            num1 = float(input("enter the frist number : "))
+            num2 = float(input("enter the second number : "))
             print(f"result: {num1} - {num2} = {subs(num1, num2)}")
         elif choice == "3":
+            num1 = float(input("enter the frist number : "))
+            num2 = float(input("enter the second number : "))
             print(f"result: {num1} * {num2} = {mult(num1, num2)}")
         elif choice == "4":
+            num1 = float(input("enter the frist number : "))
+            num2 = float(input("enter the second number : "))
             print(f"result: {num1} / {num2} = {div(num1, num2)}")
         elif choice == "5":
+            num1 = float(input("enter the frist number : "))
+            num2 = float(input("enter the second number : "))
             print(f"result: {num1} ** {num2} = {exp(num1,num2)}")
 
 
@@ -45,54 +53,69 @@ def calculator():
             print("multiply = 3")
             print("divide = 4")
             print("exponentiation = 5")
-            choice2 = input("what order you want to do: ")
+            choice2 = input("what order you want to do : ")
             if choice2 in ["1", "2", "3", "4", "5"]:
                 if choice2 == "1":
+                    num1 = float(input("enter the frist number : "))
+                    num2 = float(input("enter the second number : "))
                     print(f"result: {num1} + {num2} = {add(num1, num2)}")
                     num4 = num1 + num2
                 elif choice2 == "2":
+                    num1 = float(input("enter the frist number : "))
+                    num2 = float(input("enter the second number : "))
                     print(f"result: {num1} - {num2} = {subs(num1, num2)}")
                     num4 = num1 - num2
                 elif choice2 == "3":
+                    num1 = float(input("enter the frist number : "))
+                    num2 = float(input("enter the second number : "))
                     print(f"result: {num1} * {num2} = {mult(num1, num2)}")
                     num4 = num1 * num2
                 elif choice2 == "4":
+                    num1 = float(input("enter the frist number : "))
+                    num2 = float(input("enter the second number : "))
                     print(f"result: {num1} / {num2} = {div(num1, num2)}")
                     num4 = num1 / num2
                 elif choice2 == "5":
+                    num1 = float(input("enter the frist number : "))
+                    num2 = float(input("enter the second number : "))
                     print(f"result: {num1} ** {num2} = {exp(num1,num2)}")
                     num4 = num1 ** num2
 
 
                 while True: 
-                        num3 = float(input("enter an other number : "))
+                        print("")
                         print("select an operation :")
                         print("addition = 1")
                         print("subtraction = 2")
                         print("multiply = 3")
                         print("divide = 4")
                         print("exponentiation = 5")
-                        choice3 = input("what order you want to do: ")
+                        print(f"the previous result is {num4}")
+                        print("")
+
+                        choice3 = input("what order you want to do : ")
+                        num3 = float(input("enter an other number : "))
+                        result = num3
                         if choice3 in ["1", "2", "3", "4", "5"]:
                             if choice3 == "1":
-                                num3 = num3 + num4
-                                print(num3)
+                                num3 = num4 + num3
+                                print(f"result: {num4} + {result} = {num3}")
                                 num4 = num3
                             elif choice3 == "2":
-                                num3 = num3 - num4
-                                print(num3)
+                                num3 = num4 - num3
+                                print(f"result: {num4} - {result} = {num3}")
                                 num4 = num3
                             elif choice3 == "3":
-                                num3 = num3 * num4
-                                print(num3)
+                                num3 = num4 * num3
+                                print(f"result: {num4} * {result} = {num3}")
                                 num4 = num3
                             elif choice3 == "4":
-                                num3 = num3 / num4
-                                print(num3)
+                                num3 = num4 / num3
+                                print(f"result: {num4} / {result} = {num3}")
                                 num4 = num3
                             elif choice3 == "5":
-                                num3 = num3 ** num4
-                                print(num3)
+                                num3 = num4 ** num3
+                                print(f"result: {num4} ** {result} = {num3}")
                                 num4 = num3
 
     else:
