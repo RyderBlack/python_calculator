@@ -3,6 +3,7 @@ from rich.panel import Panel
 import os
 
 console = Console()
+history = []
 
 # the menu
 menu = """
@@ -10,7 +11,9 @@ menu = """
 2. Subtraction
 3. Multiply
 4. Divide
-5. Exponentiation
+5. Exponential
+6. Show History
+7. Delete History
 """
 
 
@@ -35,33 +38,53 @@ def calc_choice():
     print("+-------------------+")
     console.print(Panel(menu, title="[bold cyan]Menu[/bold cyan]", expand=False))
     print("+-------------------+")
-    # print("""
-    #     \033[1;36m+-------------------+
-    #     |     \033[1;33m=== Menu ===\033[1;36m   |
-    #     +-------------------+
-    #     | 1. Addition        |
-    #     | 2. Subtraction     |
-    #     | 3. Multiply        |
-    #     | 4. Divide          |
-    #     | 5. Exponentiation  |
-    #     +-------------------+\033[0m
-    # """)
+
 
 
 # the 5 calculations
 def additor(x,y):
-    return x + y
+    result = x + y
+    print(f"\nresult: {x} + {y} = {bold_start}{result}{bold_end}")
+    history.append(f'{x} + {y} = {result}')
+    return result
+
 def subtrator(x,y):
-    return x - y
+    result = x - y
+    print(f"\nresult: {x} - {y} = {bold_start}{result}{bold_end}")
+    history.append(f'{x} - {y} = {result}')
+    return result
+
 def multiplicator(x,y):
-    return x * y
+    result = x * y
+    print(f"\nresult: {x} * {y} = {bold_start}{result}{bold_end}")
+    history.append(f'{x} * {y} = {result}')
+    return result
+
 def dividor(x,y):
     if y ==0:
         return ("error! don't divide by 0")
-    return x / y
-def exponentor(x,y):
-    return x ** y
+    else:
+        result = x / y
+        print(f"\nresult: {x} / {y} = {bold_start}{result}{bold_end}")
+        history.append(f'{x} / {y} = {result}')
+        return result
 
+def exponentor(x,y):
+    result = x ** y
+    print(f"\nresult: {x} ** {y} = {bold_start}{result}{bold_end}")
+    history.append(f'{x} ** {y} = {result}')
+    return result
+
+
+def show_history():
+    print(history)
+    
+def delete_history():
+    history.clear()
+    print("The history has been deleted.")
+
+
+# input numbers
 def get_number(user_input_number):
     while True:
         try:
@@ -83,11 +106,12 @@ def calculator():
             calc_choice()
             
             choice = input("\nWhat operation do you want to do: ")
-            if choice in ["1", "2", "3", "4", "5"]:
+            if choice in ["1", "2", "3", "4", "5","6", "7"]:
                 
-                num1 = get_number("enter the first number : ")
-                num2 = get_number("enter the second number: ")         
-
+                if choice in ["1", "2", "3", "4", "5"]:
+                    num1 = get_number("enter the first number : ")
+                    num2 = get_number("enter the second number: ") 
+                
                 
                 clear_screen()
                 calc_choice()
@@ -95,15 +119,25 @@ def calculator():
                 # match case to determine the operation to do
                 match choice:
                     case "1":
-                        print(f"\nresult: {num1} + {num2} = {bold_start}{additor(num1, num2)}{bold_end}")
+                        additor(num1,num2)
                     case "2":
-                        print(f"\nresult: {num1} - {num2} = {bold_start}{subtrator(num1, num2)}{bold_end}")
+                        subtrator(num1,num2)
                     case "3":
-                        print(f"\nresult: {num1} * {num2} = {bold_start}{multiplicator(num1, num2)}{bold_end}")
+                        multiplicator(num1, num2)
                     case "4":
-                        print(f"\nresult: {num1} / {num2} = {bold_start}{dividor(num1, num2)}{bold_end}")
+                        dividor(num1, num2)
                     case "5":
-                        print(f"\nresult: {num1} ** {num2} = {bold_start}{exponentor(num1,num2)}{bold_end}")
+                        exponentor(num1,num2)
+                    case "6":
+                        if not history:
+                            print("there is no history at the moment")
+                        else:
+                            show_history()
+                    case "7":
+                        if not history:
+                            print("there is no history to delete")
+                        else:
+                            delete_history()
                     case _:
                         print("again, enter a number between 1 and 5")
                 
