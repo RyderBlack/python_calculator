@@ -4,6 +4,8 @@ import os
 
 console = Console()
 history = []
+result_history = []
+
 
 # the menu
 menu = """
@@ -12,8 +14,11 @@ menu = """
 3. Multiply
 4. Divide
 5. Exponential
+      ===
 6. Show History
 7. Delete History
+      ===
+8. Continue Last Calculation
 """
 
 
@@ -30,9 +35,9 @@ def clear_screen():
 
 # display choice to user
 def display_menu():
-    print("+-------------------+")
+    print("     +-------------------+")
     console.print(Panel(menu, title="[bold cyan]Menu[/bold cyan]", expand=False))
-    print("+-------------------+")
+    print("     +-------------------+")
 
 
 
@@ -40,18 +45,25 @@ def display_menu():
 def additor(x,y):
     result = x + y
     console.print(f"\n[bold green]result is: {x} + {y} = {result}[/bold green]")
+
+    result_history.append(result)
     history.append(f'{x} + {y} = {result}')
+    result_history.append(result)
     return result
 
 def subtrator(x,y):
     result = x - y
     console.print(f"\n[bold green]result is: {x} - {y} = {result}[/bold green]")
+
+    result_history.append(result)
     history.append(f'{x} - {y} = {result}')
     return result
 
 def multiplicator(x,y):
     result = x * y
     console.print(f"\n[bold green]result is: {x} * {y} = {result}[/bold green]")
+
+    result_history.append(result)
     history.append(f'{x} * {y} = {result}')
     return result
 
@@ -61,12 +73,16 @@ def dividor(x,y):
     else:
         result = x / y
         console.print(f"\n[bold green]result is: {x} / {y} = {result}[/bold green]")
+
+        result_history.append(result)
         history.append(f'{x} / {y} = {result}')
         return result
 
 def exponentor(x,y):
     result = x ** y
     console.print(f"\n[bold green]result is: {x} ** {y} = {result}[/bold green]")
+
+    result_history.append(result)
     history.append(f'{x} ** {y} = {result}')
     return result
 
@@ -74,12 +90,13 @@ def exponentor(x,y):
 def show_history():
     print(history)
     
+    
 def delete_history():
     history.clear()
     console.print("The history has been deleted.")
 
 
-# input numbers
+# get the input numbers and sort if int or float
 def get_number(user_input_number):
     while True:
         try:
@@ -101,12 +118,11 @@ def calculator():
             display_menu()
             
             choice = input("\nWhat operation do you want to do: ")
-            if choice in ["1", "2", "3", "4", "5","6", "7"]:
+            if choice in ["1", "2", "3", "4", "5", "6", "7", "8"]:
                 
                 if choice in ["1", "2", "3", "4", "5"]:
                     num1 = get_number("enter the first number : ")
                     num2 = get_number("enter the second number: ") 
-                
                 
                 clear_screen()
                 display_menu()
@@ -114,7 +130,7 @@ def calculator():
                 # match case to determine the operation to do
                 match choice:
                     case "1":
-                        additor(num1,num2)
+                        additor(num1, num2)
                     case "2":
                         subtrator(num1,num2)
                     case "3":
@@ -123,6 +139,8 @@ def calculator():
                         dividor(num1, num2)
                     case "5":
                         exponentor(num1,num2)
+                    
+                    #history related choices    
                     case "6":
                         if not history:
                             print("there is no history at the moment")
@@ -133,6 +151,35 @@ def calculator():
                             print("there is no history to delete")
                         else:
                             delete_history()
+                                
+                    # continue last calc          
+                    case "8":
+                        if not result_history:
+                            print("there is no history to start with")
+                        else:
+                            
+                            clear_screen()
+                            display_menu()
+                            
+                            last_result = result_history[-1]
+                            choice2 = input("what other calculation do you want to do? ")
+                            
+                            if choice2 in ["1", "2", "3", "4", "5"]:
+                                num3 = get_number("enter the new number : ")
+                                
+                            match choice2:
+                                case "1":
+                                    additor(last_result, num3)
+                                case "2":
+                                    subtrator(last_result, num3)
+                                case "3":
+                                    multiplicator(last_result, num3)
+                                case "4":
+                                    dividor(last_result, num3)
+                                case "5":
+                                    exponentor(last_result, num3)   
+                         
+                    # wildcard just in case        
                     case _:
                         print("again, enter a number between 1 and 5")
                 
@@ -151,6 +198,7 @@ def calculator():
             clear_screen()
             console.print("[bold blue]Thank you for using our calculator![/bold blue]")
             return None
+
 
    
 # run the code     
